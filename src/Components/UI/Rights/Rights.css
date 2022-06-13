@@ -1,0 +1,9 @@
+.rightsinfo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: rgba(255, 255, 255, 0.753);
+    background-color: #000000de;
+    font-size: 10px;
+}
