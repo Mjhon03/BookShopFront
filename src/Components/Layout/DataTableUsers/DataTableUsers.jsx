@@ -4,6 +4,7 @@ import './DataTableUsers.css'
 import { ModalCreateUser } from '../../Modal/ModalCreateUser/ModalCreateUser'
 
 
+
 export const DataTableUsers = () => {
 
     const [data, setData] = useState([])
@@ -27,7 +28,7 @@ export const DataTableUsers = () => {
         axios.delete(`https://localhost:44352/api/Clientes/${e.target.id}`)
             .then(response => {
                 console.log(response.data);
-                dataUsers()
+                
             }).catch(ex => {
                 console.log(ex);
             })
