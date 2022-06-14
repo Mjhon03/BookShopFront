@@ -5,6 +5,7 @@ import { ModalCreateUser } from '../../Modal/ModalCreateUser/ModalCreateUser'
 import { ModalUpdateUser } from '../../Modal/ModalUpdateUser/ModalUpdateUser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import swal from 'sweetalert'
 
 
 
@@ -28,18 +29,34 @@ export const DataTableUsers = () => {
 
 
     const deleteUser = ((e) => {
-        axios.delete(`https://localhost:44352/api/Clientes/${e.target.id}`)
-            .then(response => {
-                console.log(response.data);
-                
-            }).catch(ex => {
-                console.log(ex);
-            })
+        console.log(e.target.id);
+        swal({
+            title: "¿Estas seguro?",
+            text: "Una vez eliminado no podras recuperarlo",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+            axios.delete(`https://localhost:44352/api/Clientes/${e.target.id}`)
+                .then(response => {
+                    console.log(response.data);
+                    
+                }).catch(ex => {
+                    console.log(ex);
+                })
+            swal("Eliminado", {
+                icon: "success",
+            });
+            window.location.reload();
+            } 
+        });
     })
 
 
     return (
-        <div>
+        <div className='totalInfo'>
             <div className='addnewuser'>
                 <ModalCreateUser />
             </div>
@@ -70,11 +87,11 @@ export const DataTableUsers = () => {
                                 <td>{user.librosEncargados}</td>
                                 <td>{user.prestamo}</td>
                                 <td><ModalUpdateUser idUser={user.id}/></td>
-                                <td><button id={user.id} onClick={deleteUser}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                <td><button className='btn-delete' id={user.id} onClick={deleteUser}><FontAwesomeIcon icon={faTrash} /></button></td>
                             </tr>
                         ))}
                 </table>
             </div>
-    </div>
+        </div>
 )
 }

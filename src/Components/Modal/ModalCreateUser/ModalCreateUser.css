@@ -1,0 +1,44 @@
+.header-modal {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-content-item{
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header-modal-icon{
+    padding: 0.3em 0;
+    font-size: 15px;
+    cursor: pointer;
+}
+.create-content-item{
+    text-align: start;
+}
+.create-content-item-label{
+    font-size: 15px;
+    font-weight: bolder;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+}
+.create-content-item-input{
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+    font-size: 16px;
+}
+.create-content-item-button{
+    width: 20%;
+    color: #00ADB5;
+    background : rgb(37,46,53);
+    border: none;
+    border-radius: 5px;
+    font-size: 100%;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    cursor: pointer;
+}

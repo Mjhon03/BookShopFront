@@ -22,7 +22,6 @@ export const ModalUpdateUser = ({idUser}) => {
     const [actualdocumento, setactualdocumento] = useState(0)
     const [actualcorreo, setactualcorreo] = useState("")
     const [actualdireccion, setactualdireccion] = useState("")
-    const [actualcontrasenna, setactualcontrasenna] = useState("")
     const [actualfechaNacimiento, setactualfechaNacimiento] = useState("")
 
     const changeModal = () => {
@@ -64,7 +63,6 @@ export const ModalUpdateUser = ({idUser}) => {
             setactualdocumento(response.data.documento)
             setactualcorreo(response.data.correo)
             setactualdireccion(response.data.direccion)
-            setactualcontrasenna(response.data.contrasenna)
             setactualfechaNacimiento(response.data.fechaNacimiento)
         })
         .catch(ex => {
@@ -90,19 +88,19 @@ export const ModalUpdateUser = ({idUser}) => {
                             <label className='create-content-item-label'>Nombre</label>
                             <input className='create-content-item-input' type='text'  onChange={(e)=>{setnombres(e.target.value)}} value={actualnombres}></input>
                             <label className='create-content-item-label'>Apellidos</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}} value={actualapellidos}></input>
                             <label className='create-content-item-label'> Documento</label>
-                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setdocumento(parseInt(e.target.value));}}></input>
+                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setdocumento(parseInt(e.target.value));}} value={actualdocumento}></input>
                             <label className='create-content-item-label'>Correo</label>
-                            <input className='create-content-item-input' type='email' onChange={(e)=>{setcorreo(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='email' onChange={(e)=>{setcorreo(e.target.value)}} value={actualcorreo}></input>
                             <label className='create-content-item-label'>Contraseña</label>
-                            <input className='create-content-item-input' type='password' onChange={(e)=>{setcontrasenna(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='password' onChange={(e)=>{setcontrasenna(e.target.value)}} ></input>
                             <label className='create-content-item-label'>Dirección</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setdireccion(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setdireccion(e.target.value)}} value={actualdireccion}></input>
                             <label className='create-content-item-label'>Fecha nacimiento</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}} placeholder='aa-dd-mm' value={actualfechaNacimiento}></input>
                         </div>
-                        <div className='create-content-item'>
+                        <div className='create-content-updateItem'>
                             <button className='create-content-item-button' onClick={()=>{updateUser()}}>Actualizar informacion</button>
                         </div>
                     </div>

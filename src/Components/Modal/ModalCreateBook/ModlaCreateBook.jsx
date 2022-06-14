@@ -62,11 +62,11 @@ export const ModalCreateBook = () => {
                             <label className='create-content-item-label'>Cantidad de paginas</label>
                             <input className='create-content-item-input' type='numbers' onChange={(e)=>{setcantPaginas(parseInt(e.target.value))}}></input>
                             <label className='create-content-item-label'>Fecha de lanzamiento</label>
-                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}} placeholder='mm/dd/aa'></input>
                             <label className='create-content-item-label'>Genero</label>
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setgenero(e.target.value)}}></input>
                         </div>
-                        <div className='create-content-item'>
+                        <div className='create-content-createItem'>
                             <button className='create-content-item-button' onClick={()=>{createBook()}}>Crear libro</button>
                         </div>
                     </div>

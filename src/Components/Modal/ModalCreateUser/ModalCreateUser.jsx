@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './ModalCreateUser.css'
 import { Overlay, Modal, ProfileCardButton } from '../../StyledComponents/Overlay/StyledComponents.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -65,7 +66,7 @@ export const ModalCreateUser = () => {
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setnombres(e.target.value)}}></input>
                             <label className='create-content-item-label'>Apellidos</label>
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}}></input>
-                            <label className='create-content-item-label'> Documento</label>
+                            <label className='create-content-item-label'>Documento</label>
                             <input className='create-content-item-input' type='numbers' onChange={(e)=>{setdocumento(parseInt(e.target.value));}}></input>
                             <label className='create-content-item-label'>Correo</label>
                             <input className='create-content-item-input' type='email' onChange={(e)=>{setcorreo(e.target.value)}}></input>
@@ -74,9 +75,9 @@ export const ModalCreateUser = () => {
                             <label className='create-content-item-label'>Dirección</label>
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setdireccion(e.target.value)}}></input>
                             <label className='create-content-item-label'>Fecha nacimiento</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}} placeholder='aa-dd-mm'></input>
                         </div>
-                        <div className='create-content-item'>
+                        <div className='create-content-createItem'>
                             <button className='create-content-item-button' onClick={()=>{createUser()}}>Crear cliente</button>
                         </div>
                     </div>

@@ -36,3 +36,12 @@ td{
     border: 1px solid black;
     text-align: center;
 }
+.btn-delete{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.totalInfo{
+    min-height: 350px;
+    max-height: 100%;
+}

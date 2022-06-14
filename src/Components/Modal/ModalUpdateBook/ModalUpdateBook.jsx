@@ -33,7 +33,7 @@ export const ModalUpdateBook = ({idBook}) => {
             "genero":genero
         }).then(response => {
             console.log(response.data);
-            Alert("El libro se ha creado correctamente","", "success","Ok")
+            Alert("El libro se ha actualizado correctamente","", "success","Ok")
             closeModal()
             window.location.reload()
         })
@@ -62,11 +62,11 @@ export const ModalUpdateBook = ({idBook}) => {
                             <label className='create-content-item-label'>Cantidad de paginas</label>
                             <input className='create-content-item-input' type='numbers' onChange={(e)=>{setcantPaginas(parseInt(e.target.value))}}></input>
                             <label className='create-content-item-label'>Fecha de lanzamiento</label>
-                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}} placeholder='mm/dd/aa'></input>
                             <label className='create-content-item-label'>Genero</label>
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setgenero(e.target.value)}}></input>
                         </div>
-                        <div className='create-content-item'>
+                        <div className='create-content-updateItem'>
                             <button className='create-content-item-button' onClick={()=>{createBook()}}>Actualizar libro</button>
                         </div>
                     </div>

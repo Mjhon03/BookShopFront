@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import { ModalCreateBook } from '../../Modal/ModalCreateBook/ModlaCreateBook';
 import { ModalUpdateBook } from '../../Modal/ModalUpdateBook/ModalUpdateBook';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const DataTableBook = () => {
 
@@ -33,7 +34,7 @@ export const DataTableBook = () => {
             })
     })
     return (
-        <div>
+        <div className='totalInfo'>
             <div className='addnewuser'>
                 <ModalCreateBook />
             </div>
@@ -61,7 +62,7 @@ export const DataTableBook = () => {
                                 <td>{book.fechaLanzamiento}</td>
                                 <td>{book.genero}</td>
                                 <td><ModalUpdateBook idBook={book.idLibro}/></td>
-                                <td><button id={book.idLibro} onClick={deleteUser}>Eliminar</button></td>
+                                <td><button className='btn-delete' id={book.idLibro} onClick={deleteUser}><FontAwesomeIcon icon={faTrash} onClick={deleteUser} /></button></td>
                             </tr>
                         ))}
                     </tbody>
