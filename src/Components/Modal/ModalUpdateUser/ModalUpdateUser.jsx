@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Overlay, Modal, ProfileCardButton } from '../../StyledComponents/Overlay/StyledComponents.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from '../../../Alert';
 import axios from 'axios';
 
-export const ModalCreateUser = () => {
+export const ModalUpdateUser = ({idUser}) => {
 
     const [visibility, setVisibility] = useState(false)
 
@@ -17,6 +17,13 @@ export const ModalCreateUser = () => {
     const [contrasenna, setcontrasenna] = useState("")
     const [fechaNacimiento, setfechaNacimiento] = useState("")
 
+    const [actualnombres, setactualnombres] = useState("")
+    const [actualapellidos, setactualapellidos] = useState("")
+    const [actualdocumento, setactualdocumento] = useState(0)
+    const [actualcorreo, setactualcorreo] = useState("")
+    const [actualdireccion, setactualdireccion] = useState("")
+    const [actualcontrasenna, setactualcontrasenna] = useState("")
+    const [actualfechaNacimiento, setactualfechaNacimiento] = useState("")
 
     const changeModal = () => {
         setVisibility(true)
@@ -26,8 +33,8 @@ export const ModalCreateUser = () => {
         setVisibility(false)
     }
 
-    const createUser = () =>{
-        axios.post('https://localhost:44352/api/Clientes', {
+    const updateUser = () =>{
+        axios.put(`https://localhost:44352/api/Clientes/${idUser}`, {
             "nombres":nombres,
             "apellidos":apellidos,
             "documento":documento,
@@ -39,7 +46,7 @@ export const ModalCreateUser = () => {
         })
         .then(response => {
             console.log(response.data);
-            Alert("El cliente se ha creado correctamente","", "success","Ok")
+            Alert("La informacion se ha actualizado","", "success","Ok")
             closeModal()
             window.location.reload()
         })
@@ -48,9 +55,28 @@ export const ModalCreateUser = () => {
         })
     }
 
+    const actualInfo = () =>{
+        axios.get(`https://localhost:44352/api/Clientes/${idUser}`)
+        .then(response => {
+            console.log(response.data);
+            setactualnombres(response.data.nombres)
+            setactualapellidos(response.data.apellidos)
+            setactualdocumento(response.data.documento)
+            setactualcorreo(response.data.correo)
+            setactualdireccion(response.data.direccion)
+            setactualcontrasenna(response.data.contrasenna)
+            setactualfechaNacimiento(response.data.fechaNacimiento)
+        })
+        .catch(ex => {
+            console.log(ex);
+        })
+    }
+
+    useEffect(() => {actualInfo()},[idUser])
+
     return (
         <>
-        <ProfileCardButton onClick={() => changeModal()}>Agregar nuevo cliente</ProfileCardButton>
+        <ProfileCardButton onClick={() => changeModal()}>Actualizar informacion</ProfileCardButton>
         {visibility &&
             <Overlay>
             <Modal>
@@ -58,11 +84,11 @@ export const ModalCreateUser = () => {
                 <FontAwesomeIcon className='header-modal-icon' onClick={closeModal} icon={faArrowRightFromBracket}></FontAwesomeIcon>
             </div>
                 <div className="modal-content-item">
-                    <h1 className='create-title'>Nuevo cliente</h1>
+                    <h1 className='create-title'>Actualizar informacion</h1>
                     <div className='create-content'> 
                         <div className='create-content-item'>
                             <label className='create-content-item-label'>Nombre</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setnombres(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text'  onChange={(e)=>{setnombres(e.target.value)}} value={actualnombres}></input>
                             <label className='create-content-item-label'>Apellidos</label>
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}}></input>
                             <label className='create-content-item-label'> Documento</label>
@@ -77,7 +103,7 @@ export const ModalCreateUser = () => {
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}}></input>
                         </div>
                         <div className='create-content-item'>
-                            <button className='create-content-item-button' onClick={()=>{createUser()}}>Crear cliente</button>
+                            <button className='create-content-item-button' onClick={()=>{updateUser()}}>Actualizar informacion</button>
                         </div>
                     </div>
                 </div>

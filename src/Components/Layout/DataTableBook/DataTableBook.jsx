@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
-import { ModalCreateUserBook } from '../../Modal/ModalCreateBook/ModlaCreateBook';
+import { ModalCreateBook } from '../../Modal/ModalCreateBook/ModlaCreateBook';
+import { ModalUpdateBook } from '../../Modal/ModalUpdateBook/ModalUpdateBook';
 
 
 export const DataTableBook = () => {
@@ -33,8 +34,8 @@ export const DataTableBook = () => {
     })
     return (
         <div>
-            <div className='addnewbook'>
-                <ModalCreateUserBook />
+            <div className='addnewuser'>
+                <ModalCreateBook />
             </div>
             <div>
                 <table className='tableUsers'>
@@ -46,6 +47,8 @@ export const DataTableBook = () => {
                             <th>Cantidad de paginas</th>
                             <th>Fecha de lanzamiento</th>
                             <th>Genero</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +60,7 @@ export const DataTableBook = () => {
                                 <td>{book.cantPaginas}</td>
                                 <td>{book.fechaLanzamiento}</td>
                                 <td>{book.genero}</td>
-                                <td><button id={book.idLibro}>Actualizar</button></td>
+                                <td><ModalUpdateBook idBook={book.idLibro}/></td>
                                 <td><button id={book.idLibro} onClick={deleteUser}>Eliminar</button></td>
                             </tr>
                         ))}

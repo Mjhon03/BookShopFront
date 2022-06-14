@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate } from 'react-router-dom';
-
+import './DataOpcion.css';
 export const DataOpcion = () => {
 
     const navigate = useNavigate();
@@ -15,10 +15,10 @@ export const DataOpcion = () => {
     return (
     <div className='dataoption'>
         <div className='userdata'>
-            <button onClick={changePage}>Clientes</button>
+            <button className='btn-user' onClick={changePage}>Clientes</button>
         </div>
         <div className='bookdata'>
-            <button onClick={changePageBook}>Libros</button>
+            <button className='btn-user' onClick={changePageBook}>Libros</button>
         </div>
     </div>
 )

@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import './DataTableUsers.css'
 import { ModalCreateUser } from '../../Modal/ModalCreateUser/ModalCreateUser'
+import { ModalUpdateUser } from '../../Modal/ModalUpdateUser/ModalUpdateUser'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -33,14 +36,15 @@ export const DataTableUsers = () => {
                 console.log(ex);
             })
     })
+
+
     return (
         <div>
-                <div className='addnewuser'>
+            <div className='addnewuser'>
                 <ModalCreateUser />
             </div>
-            <div>
+            <div className='tableData'>
                 <table className='tableUsers'>
-                    <thead>
                         <tr>
                             <th>Id</th>
                             <th>Nombres</th>
@@ -54,8 +58,6 @@ export const DataTableUsers = () => {
                             <th>Actualizar</th>
                             <th>Eliminar</th>
                         </tr>
-                    </thead>
-                    <tbody>
                         {data.map((user) => (
                             <tr key={user.id}>
                                 <td>{user.id}</td>
@@ -67,11 +69,10 @@ export const DataTableUsers = () => {
                                 <td>{user.fechaNacimiento}</td>
                                 <td>{user.librosEncargados}</td>
                                 <td>{user.prestamo}</td>
-                                <td><button id={user.id}>Actualizar</button></td>
-                                <td><button id={user.id} onClick={deleteUser}>Eliminar</button></td>
+                                <td><ModalUpdateUser idUser={user.id}/></td>
+                                <td><button id={user.id} onClick={deleteUser}><FontAwesomeIcon icon={faTrash} /></button></td>
                             </tr>
                         ))}
-                    </tbody>
                 </table>
             </div>
     </div>

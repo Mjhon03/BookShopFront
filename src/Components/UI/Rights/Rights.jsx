@@ -5,10 +5,10 @@ export const Rights = () => {
         <>
         <div className="rightsinfo">
             <div>
-                <h2>Jhon Maicol Montoya</h2>
+                <h3>Jhon Maicol Montoya</h3>
             </div>
             <div>
-                <h2>All rights reversed &copy;2022</h2>        
+                <h3>All rights reversed &copy;2022</h3>        
             </div>
         </div>
         </>

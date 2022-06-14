@@ -5,7 +5,7 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from '../../../Alert.js';
 import axios from 'axios';
 
-export const ModalCreateBook = () => {
+export const ModalUpdateBook = ({idBook}) => {
 
     const [visibility, setVisibility] = useState(false)
 
@@ -25,7 +25,7 @@ export const ModalCreateBook = () => {
     }
 
     const createBook = () =>{
-        axios.post('https://localhost:44352/api/Libro', {
+        axios.put(`https://localhost:44352/api/Libro/${idBook}`, {
             "nombre":nombre,
             "autor":autor,
             "cantPaginas":cantPaginas,
@@ -44,7 +44,7 @@ export const ModalCreateBook = () => {
 
     return (
         <>
-        <ProfileCardButton onClick={() => changeModal()}>Agregar nuevo libro</ProfileCardButton>
+        <ProfileCardButton onClick={() => changeModal()}>Actualizar libro</ProfileCardButton>
         {visibility &&
             <Overlay>
             <Modal>
@@ -52,7 +52,7 @@ export const ModalCreateBook = () => {
                 <FontAwesomeIcon className='header-modal-icon' onClick={closeModal} icon={faArrowRightFromBracket}></FontAwesomeIcon>
             </div>
                 <div className="modal-content-item">
-                    <h1 className='create-title'>Nuevo Libro</h1>
+                    <h1 className='create-title'>Actualizar libro</h1>
                     <div className='create-content'> 
                         <div className='create-content-item'>
                             <label className='create-content-item-label'>Nombre</label>
@@ -67,7 +67,7 @@ export const ModalCreateBook = () => {
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setgenero(e.target.value)}}></input>
                         </div>
                         <div className='create-content-item'>
-                            <button className='create-content-item-button' onClick={()=>{createBook()}}>Crear libro</button>
+                            <button className='create-content-item-button' onClick={()=>{createBook()}}>Actualizar libro</button>
                         </div>
                     </div>
                 </div>
