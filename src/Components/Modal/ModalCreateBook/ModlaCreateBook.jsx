@@ -25,7 +25,7 @@ export const ModalCreateBook = () => {
     }
 
     const createBook = () =>{
-        axios.post('https://localhost:44352/api/Libro', {
+        axios.post('http://bookshopnew.somee.com/api/Libro', {
             "nombre":nombre,
             "autor":autor,
             "cantPaginas":cantPaginas,

@@ -14,9 +14,8 @@ export const DataTableUsers = () => {
     const [data, setData] = useState([])
 
     const dataUsers = (() => {
-        axios.get('https://localhost:44352/api/Clientes')
+        axios.get('http://bookshopnew.somee.com/api/Clientes')
             .then(response => {
-                console.log(response.data);
                 setData(response.data)
             }).catch(ex => {
                 console.log(ex);
@@ -39,17 +38,15 @@ export const DataTableUsers = () => {
         })
         .then((willDelete) => {
             if (willDelete) {
-            axios.delete(`https://localhost:44352/api/Clientes/${e.target.id}`)
+            axios.delete(`http://bookshopnew.somee.com/api/Clientes/${e.target.id}`)
                 .then(response => {
-                    console.log(response.data);
-                    
+                    dataUsers()
                 }).catch(ex => {
                     console.log(ex);
                 })
             swal("Eliminado", {
                 icon: "success",
             });
-            window.location.reload();
             } 
         });
     })

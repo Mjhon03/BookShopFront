@@ -17,12 +17,6 @@ export const ModalUpdateUser = ({idUser}) => {
     const [contrasenna, setcontrasenna] = useState("")
     const [fechaNacimiento, setfechaNacimiento] = useState("")
 
-    const [actualnombres, setactualnombres] = useState("")
-    const [actualapellidos, setactualapellidos] = useState("")
-    const [actualdocumento, setactualdocumento] = useState(0)
-    const [actualcorreo, setactualcorreo] = useState("")
-    const [actualdireccion, setactualdireccion] = useState("")
-    const [actualfechaNacimiento, setactualfechaNacimiento] = useState("")
 
     const changeModal = () => {
         setVisibility(true)
@@ -31,16 +25,15 @@ export const ModalUpdateUser = ({idUser}) => {
     const closeModal = () => {
         setVisibility(false)
     }
-
     const updateUser = () =>{
-        axios.put(`https://localhost:44352/api/Clientes/${idUser}`, {
+        axios.put(`http://bookshopnew.somee.com/api/Clientes/${idUser}`, {
             "nombres":nombres,
             "apellidos":apellidos,
             "documento":documento,
             "correo":correo,
             "contrasenna":contrasenna,
             "direccion":direccion,
-            "fechaNacimiento":fechaNacimiento,
+            "fechaNacimento":fechaNacimiento,
             "librosEncargados":0
         })
         .then(response => {
@@ -55,14 +48,15 @@ export const ModalUpdateUser = ({idUser}) => {
     }
 
     const actualInfo = () =>{
-        axios.get(`https://localhost:44352/api/Clientes/${idUser}`)
+        axios.get(`http://bookshopnew.somee.com/api/Clientes/${idUser}`)
         .then(response => {
-            setactualnombres(response.data[0].nombres)
-            setactualapellidos(response.data[0].apellidos)
-            setactualdocumento(response.data[0].documento)
-            setactualcorreo(response.data[0].correo)
-            setactualdireccion(response.data[0].direccion)
-            setactualfechaNacimiento(response.data[0].fechaNacimiento)
+            setnombres(response.data[0].nombres)
+            setapellidos(response.data[0].apellidos)
+            setdocumento(response.data[0].documento)
+            setcontrasenna('')
+            setcorreo(response.data[0].correo)
+            setdireccion(response.data[0].direccion)
+            setfechaNacimiento(response.data[0].fechaNacimiento)
         })
         .catch(ex => {
             console.log(ex);
@@ -71,6 +65,15 @@ export const ModalUpdateUser = ({idUser}) => {
 
     useEffect(() => {actualInfo()},[visibility===true])
 
+    const validpassword = () =>{
+        if (contrasenna==='') {
+            Alert("Debe ingresar la contraseña", "Para realizar un cambio es necesario la contraseña", "warning","Ok")
+        }
+        else{
+            updateUser()
+        }
+    }
+    
     return (
         <>
         <ProfileCardButton onClick={() => changeModal()}>Actualizar información</ProfileCardButton>
@@ -85,22 +88,22 @@ export const ModalUpdateUser = ({idUser}) => {
                     <div className='create-content'> 
                         <div className='create-content-item'>
                             <label className='create-content-item-label'>Nombre</label>
-                            <input className='create-content-item-input' type='text'  onChange={(e)=>{setnombres(e.target.value)}} value={actualnombres}></input>
+                            <input className='create-content-item-input' type='text'  onChange={(e)=>{setnombres(e.target.value)}} value={nombres}></input>
                             <label className='create-content-item-label'>Apellidos</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}} value={actualapellidos}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setapellidos(e.target.value)}} value={apellidos}></input>
                             <label className='create-content-item-label'> Documento</label>
-                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setdocumento(parseInt(e.target.value));}} value={actualdocumento}></input>
+                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setdocumento(parseInt(e.target.value));}} value={documento}></input>
                             <label className='create-content-item-label'>Correo</label>
-                            <input className='create-content-item-input' type='email' onChange={(e)=>{setcorreo(e.target.value)}} value={actualcorreo}></input>
+                            <input className='create-content-item-input' type='email' onChange={(e)=>{setcorreo(e.target.value)}} value={correo}></input>
                             <label className='create-content-item-label'>Contraseña</label>
-                            <input className='create-content-item-input' type='password' onChange={(e)=>{setcontrasenna(e.target.value)}} ></input>
+                            <input className='create-content-item-input' type='password' onChange={(e)=>{setcontrasenna(e.target.value)}} value={contrasenna} ></input>
                             <label className='create-content-item-label'>Dirección</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setdireccion(e.target.value)}} value={actualdireccion}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setdireccion(e.target.value)}} value={direccion}></input>
                             <label className='create-content-item-label'>Fecha nacimiento</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}} placeholder='aa-dd-mm' value={actualfechaNacimiento}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}} placeholder='aa-dd-mm' value={fechaNacimiento}></input>
                         </div>
                         <div className='create-content-updateItem'>
-                            <button className='create-content-item-button' onClick={()=>{updateUser()}}>Actualizar información</button>
+                            <button className='create-content-item-button' onClick={()=>{validpassword()}}>Actualizar información</button>
                         </div>
                     </div>
                 </div>

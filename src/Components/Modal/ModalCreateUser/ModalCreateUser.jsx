@@ -28,14 +28,14 @@ export const ModalCreateUser = () => {
     }
 
     const createUser = () =>{
-        axios.post('https://localhost:44352/api/Clientes', {
+        axios.post('http://bookshopnew.somee.com/api/Clientes', {
             "nombres":nombres,
             "apellidos":apellidos,
             "documento":documento,
             "correo":correo,
             "contrasenna":contrasenna,
             "direccion":direccion,
-            "fechaNacimiento":fechaNacimiento,
+            "fechaNacimento":fechaNacimiento,
             "librosEncargados":0
         })
         .then(response => {

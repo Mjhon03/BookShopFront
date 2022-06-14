@@ -25,7 +25,7 @@ export const ModalUpdateBook = ({idBook}) => {
     }
 
     const createBook = () =>{
-        axios.put(`https://localhost:44352/api/Libro/${idBook}`, {
+        axios.put(`http://bookshopnew.somee.com/api/Libro/${idBook}`, {
             "nombre":nombre,
             "autor":autor,
             "cantPaginas":cantPaginas,
@@ -43,7 +43,7 @@ export const ModalUpdateBook = ({idBook}) => {
 
 
     const actualInfo = () =>{
-        axios.get(`https://localhost:44352/api/Libro/${idBook}`)
+        axios.get(`http://bookshopnew.somee.com/api/Libro/${idBook}`)
         .then(response => {
             setnombre(response.data[0].nombre)
             setautor(response.data[0].autor)

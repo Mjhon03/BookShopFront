@@ -11,7 +11,7 @@ export const DataTableBook = () => {
     const [data, setData] = useState([])
 
     const dataUsers = (() => {
-        axios.get('https://localhost:44352/api/Libro')
+        axios.get('http://bookshopnew.somee.com/api/Libro')
             .then(response => {
                 setData(response.data)
             }).catch(ex => {
@@ -34,7 +34,7 @@ export const DataTableBook = () => {
         })
         .then((willDelete) => {
             if(willDelete){
-            axios.delete(`https://localhost:44352/api/Libro/${e.target.id}`)
+            axios.delete(`http://bookshopnew.somee.com/api/Libro/${e.target.id}`)
             .then(response => {
                 console.log(response.data);
                 dataUsers()
