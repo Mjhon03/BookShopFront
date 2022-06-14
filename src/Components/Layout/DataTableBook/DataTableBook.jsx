@@ -4,6 +4,7 @@ import { ModalCreateBook } from '../../Modal/ModalCreateBook/ModlaCreateBook';
 import { ModalUpdateBook } from '../../Modal/ModalUpdateBook/ModalUpdateBook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import swal from 'sweetalert'
 
 export const DataTableBook = () => {
 
@@ -12,7 +13,6 @@ export const DataTableBook = () => {
     const dataUsers = (() => {
         axios.get('https://localhost:44352/api/Libro')
             .then(response => {
-                console.log(response.data);
                 setData(response.data)
             }).catch(ex => {
                 console.log(ex);
@@ -25,13 +25,25 @@ export const DataTableBook = () => {
 
 
     const deleteUser = ((e) => {
-        axios.delete(`https://localhost:44352/api/Libro/${e.target.id}`)
+        swal({
+            title: "¿Estás seguro?",
+            text: "Una vez eliminado no podrás recuperarlo.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if(willDelete){
+            axios.delete(`https://localhost:44352/api/Libro/${e.target.id}`)
             .then(response => {
                 console.log(response.data);
                 dataUsers()
             }).catch(ex => {
                 console.log(ex);
             })
+            }
+        })
+        
     })
     return (
         <div className='totalInfo'>

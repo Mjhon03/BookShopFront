@@ -57,24 +57,23 @@ export const ModalUpdateUser = ({idUser}) => {
     const actualInfo = () =>{
         axios.get(`https://localhost:44352/api/Clientes/${idUser}`)
         .then(response => {
-            console.log(response.data);
-            setactualnombres(response.data.nombres)
-            setactualapellidos(response.data.apellidos)
-            setactualdocumento(response.data.documento)
-            setactualcorreo(response.data.correo)
-            setactualdireccion(response.data.direccion)
-            setactualfechaNacimiento(response.data.fechaNacimiento)
+            setactualnombres(response.data[0].nombres)
+            setactualapellidos(response.data[0].apellidos)
+            setactualdocumento(response.data[0].documento)
+            setactualcorreo(response.data[0].correo)
+            setactualdireccion(response.data[0].direccion)
+            setactualfechaNacimiento(response.data[0].fechaNacimiento)
         })
         .catch(ex => {
             console.log(ex);
         })
     }
 
-    useEffect(() => {actualInfo()},[idUser])
+    useEffect(() => {actualInfo()},[visibility===true])
 
     return (
         <>
-        <ProfileCardButton onClick={() => changeModal()}>Actualizar informacion</ProfileCardButton>
+        <ProfileCardButton onClick={() => changeModal()}>Actualizar información</ProfileCardButton>
         {visibility &&
             <Overlay>
             <Modal>
@@ -82,7 +81,7 @@ export const ModalUpdateUser = ({idUser}) => {
                 <FontAwesomeIcon className='header-modal-icon' onClick={closeModal} icon={faArrowRightFromBracket}></FontAwesomeIcon>
             </div>
                 <div className="modal-content-item">
-                    <h1 className='create-title'>Actualizar informacion</h1>
+                    <h1 className='create-title'>Actualizar información</h1>
                     <div className='create-content'> 
                         <div className='create-content-item'>
                             <label className='create-content-item-label'>Nombre</label>
@@ -101,7 +100,7 @@ export const ModalUpdateUser = ({idUser}) => {
                             <input className='create-content-item-input' type='text' onChange={(e)=>{setfechaNacimiento(e.target.value)}} placeholder='aa-dd-mm' value={actualfechaNacimiento}></input>
                         </div>
                         <div className='create-content-updateItem'>
-                            <button className='create-content-item-button' onClick={()=>{updateUser()}}>Actualizar informacion</button>
+                            <button className='create-content-item-button' onClick={()=>{updateUser()}}>Actualizar información</button>
                         </div>
                     </div>
                 </div>

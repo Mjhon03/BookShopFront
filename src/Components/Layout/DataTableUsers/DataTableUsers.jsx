@@ -31,8 +31,8 @@ export const DataTableUsers = () => {
     const deleteUser = ((e) => {
         console.log(e.target.id);
         swal({
-            title: "¿Estas seguro?",
-            text: "Una vez eliminado no podras recuperarlo",
+            title: "¿Estás seguro?",
+            text: "Una vez eliminado no podrás recuperarlo",
             icon: "warning",
             buttons: true,
             dangerMode: true,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Overlay, Modal, ProfileCardButton } from '../../StyledComponents/Overlay/StyledComponents.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +32,6 @@ export const ModalUpdateBook = ({idBook}) => {
             "fechaLanzamiento":fechaLanzamiento,
             "genero":genero
         }).then(response => {
-            console.log(response.data);
             Alert("El libro se ha actualizado correctamente","", "success","Ok")
             closeModal()
             window.location.reload()
@@ -41,6 +40,23 @@ export const ModalUpdateBook = ({idBook}) => {
             console.log(ex);
         })
     }
+
+
+    const actualInfo = () =>{
+        axios.get(`https://localhost:44352/api/Libro/${idBook}`)
+        .then(response => {
+            setnombre(response.data[0].nombre)
+            setautor(response.data[0].autor)
+            setcantPaginas(response.data[0].cantPaginas)
+            setfechaLanzamiento(response.data[0].fechaLanzamiento)
+            setgenero(response.data[0].genero)
+        }) 
+        .catch(ex => {
+            console.log(ex);
+        })
+    }
+
+    useEffect(() => {actualInfo()},[visibility===true])
 
     return (
         <>
@@ -56,15 +72,15 @@ export const ModalUpdateBook = ({idBook}) => {
                     <div className='create-content'> 
                         <div className='create-content-item'>
                             <label className='create-content-item-label'>Nombre</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setnombre(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setnombre(e.target.value)}} value={nombre}></input>
                             <label className='create-content-item-label'>Autor</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setautor(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setautor(e.target.value)}} value={autor}></input>
                             <label className='create-content-item-label'>Cantidad de paginas</label>
-                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setcantPaginas(parseInt(e.target.value))}}></input>
+                            <input className='create-content-item-input' type='numbers' onChange={(e)=>{setcantPaginas(parseInt(e.target.value))}} value={cantPaginas}></input>
                             <label className='create-content-item-label'>Fecha de lanzamiento</label>
-                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}} placeholder='mm/dd/aa'></input>
+                            <input className='create-content-item-input' type='email' onChange={(e)=>{setfechaLanzamiento(e.target.value)}} placeholder='mm/dd/aa' value={fechaLanzamiento}></input>
                             <label className='create-content-item-label'>Genero</label>
-                            <input className='create-content-item-input' type='text' onChange={(e)=>{setgenero(e.target.value)}}></input>
+                            <input className='create-content-item-input' type='text' onChange={(e)=>{setgenero(e.target.value)}} value={genero}></input>
                         </div>
                         <div className='create-content-updateItem'>
                             <button className='create-content-item-button' onClick={()=>{createBook()}}>Actualizar libro</button>
