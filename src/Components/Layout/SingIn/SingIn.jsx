@@ -66,22 +66,27 @@ export const SingIn = () => {
     }
 
     return (
-
-    <div className='singinContainer'>
-        <div className='singinInputs'>
-        <div className='logo'>
-            <h2>Inicio de sesión</h2>
+        <div className="singIn">
+            <div className='singinContainerImg'>
+                <img src="https://th.bing.com/th/id/R.f49524a58b6c29ed03e5dcd9269131cf?rik=Xg7sLGLSLqrVlg&riu=http%3a%2f%2fwww.phaidon.com%2fresource%2fbookstore1.jpg&ehk=gtIvzopx57JvFBnGHvr3OdM9jpxkuYyPseKu6ksHTKY%3d&risl=&pid=ImgRaw&r=0" alt="" srcset="" />
+                <div className='textImg'>BookShop</div>
+            </div>
+            <div className='singinContainer'>
+                <div className='singinInputs'>
+                <div className='logo'>
+                    <h2>Inicio de sesión</h2>
+                </div>
+                <div className='inputs'>
+                <input type="email" max="80" required autoFocus className='info-input-login' placeholder="Correo electrónico" onChange={setEventToEmail}></input><br></br>
+                    <span style={{color: "red",}}>{emailError}</span>
+                    <br></br>
+                    <input type="password" minLength='8' required className='info-input-login' placeholder="Contraseña" onChange={SetEventToPassword} onKeyUp={e=>(enterLogin(e))} ></input>
+                </div>
+                <div className='buttonAcces'>
+                <button className="register-submit" onClick={(e) => validateDataInput(e)}>Iniciar sesión</button>
+                </div>
+                </div>
+            </div>
         </div>
-        <div className='inputs'>
-        <input type="email" max="80" required autoFocus className='info-input-login' placeholder="Correo electrónico" onChange={setEventToEmail}></input><br></br>
-            <span style={{color: "red",}}>{emailError}</span>
-            <br></br>
-            <input type="password" minLength='8' required className='info-input-login' placeholder="Contraseña" onChange={SetEventToPassword} onKeyUp={e=>(enterLogin(e))} ></input>
-        </div>
-        <div className='buttonAcces'>
-        <button className="register-submit" onClick={(e) => validateDataInput(e)}>Iniciar sesión</button>
-        </div>
-        </div>
-    </div>
 )
 }

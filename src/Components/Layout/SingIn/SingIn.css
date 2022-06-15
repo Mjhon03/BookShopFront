@@ -1,9 +1,24 @@
-.singinContainer {
+.singIn{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    background-color: #333F44;
+}
+.singinContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    width: 28%;
+    height: 100%;
+    background-color: #333F44;
+}
+.singinContainerImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     background-color: #333F44;
 }
 .singinInputs{
@@ -14,9 +29,9 @@
     width: 100%;
     height: 70%;
     max-width: 400px;
-    margin-top: 20px;
     background-color: azure;
     border-radius: 5px;
+    
 }
 .logo{
     border-bottom:2px solid black ;
@@ -24,17 +39,17 @@
 h2{
     font-size: 25px;
 }
-input{  
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.inputs{
+    width: 60%;
 }
 .info-input-login{
     width: 100%;
     padding: 2% 2%;
     margin: 3% 0;
-    border-radius: 5px;
     border: solid .1px rgba(136,136,136,0.60);
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
 }
 
 .info-input-login:focus{
@@ -57,4 +72,21 @@ input{
     letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s ease;
+}
+
+img{
+    width: 300px;
+    height: 70%;
+    border-radius: 5px;
+    filter:grayscale(100%);
+    float: left;
+}
+.textImg{
+    position: absolute;
+    top: 35%;
+    left: 27.5%;
+    color: #00ADB5;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 50px;
 }
